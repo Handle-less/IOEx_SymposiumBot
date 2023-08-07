@@ -1,0 +1,9 @@
+*.log
+
+/configuration/config.json
+
+__pychache__/
+
+venv
+
+test.py
