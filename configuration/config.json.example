@@ -1,0 +1,55 @@
+{
+  "BOT_TOKEN": "",
+
+  "ADMINS_ID": [
+    5536543760
+  ],
+
+  "CHAT_ID": {
+    "CHAT": int,
+    "ERROR": int
+  },
+
+  "roles": {
+    "1": {
+      "name": "AH-COUNTER",
+      "about": "Ah-counter.png",
+      "max": 2
+    },
+    "2": {
+      "name": "CHAIRPERSON",
+      "about": "Chairperson.png",
+      "max": 3
+    },
+    "3": {
+      "name": "EVALUATOR",
+      "about": "Evaluator.png",
+      "max": 3
+    },
+    "4": {
+      "name": "GRAMMARIAN",
+      "about": "Grammarian.png",
+      "max": 3
+    },
+    "5": {
+      "name": "SPEAKER",
+      "about": "Speaker.png",
+      "max": 2
+    },
+    "6": {
+      "name": "TIMEKEEPER",
+      "about": "Timekeeper.png",
+      "max": 1
+    },
+    "7": {
+      "name": "TOPICS MASTER",
+      "about": "Topicsmaster.png",
+      "max": 3
+    }
+  },
+
+  "last_run": "30.07.2023"
+
+    "time_meeting": "17:00"
+
+}
