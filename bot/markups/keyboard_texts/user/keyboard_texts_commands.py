@@ -1,5 +1,5 @@
 buttons_text_keyboard_start = [
-    "Visit",
+    "Sign up for a meeting",
     "Top list",
-    "Roles"
+    "Roles overview"
 ]

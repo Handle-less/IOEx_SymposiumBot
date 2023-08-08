@@ -20,7 +20,7 @@ async def on_startup(_):
     await bot.set_my_commands(
         [
             BotCommand("start", "Start bot"),
-            BotCommand("roles", "Roles"),
+            BotCommand("roles", "Roles overview"),
             BotCommand("top", "Top List")
         ]
     )
