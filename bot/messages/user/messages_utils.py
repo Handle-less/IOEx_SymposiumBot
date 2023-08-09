@@ -11,3 +11,8 @@ Conference will take place
 message_check_visit = """
 Check visit
 """
+
+message_announce_visit = """
+Announce:
+Next meeting will be {} at {}
+"""

@@ -4,7 +4,7 @@ from aiogram import Bot
 from aiogram.types import ParseMode
 
 from bot.markups.keyboards.user.markups_utils import keyboard_check_visit
-from bot.messages.user.messages_utils import message_remind_meeting, message_check_visit
+from bot.messages.user.messages_utils import message_remind_meeting, message_check_visit, message_announce_visit
 from configuration import config
 from database.models.users import Users
 
@@ -44,5 +44,20 @@ async def check_visit():
         await bot.send_message(
             chat_id=config['CHAT_ID']['ADMIN'],
             text=message_check_visit,
+            reply_markup=await keyboard_check_visit()
+        )
+
+
+async def announce_visit():
+    last_run = (datetime.datetime.strptime(config['last_run'], '%d.%m.%Y')).date()
+    now_date = datetime.datetime.now().date() + datetime.timedelta(days=3)
+
+    if (last_run - now_date).days / 7 % 2 != 0:
+        await bot.send_message(
+            chat_id=config['CHAT_ID']['ADMIN'],
+            text=message_announce_visit.format(
+                now_date + datetime.timedelta(days=7),
+                config['time_meeting']
+            ),
             reply_markup=await keyboard_check_visit()
         )
