@@ -81,7 +81,7 @@ async def handler_command_top(message: Message, state: FSMContext):
         ))[:5]
         top_users = ''
         for top_user in users:
-            top_users += f'@{top_user.tg_username} - {top_user.rank}\n'
+            top_users += f'{top_user.tg_fullname} - {top_user.rank}\n'
 
         await message.answer(
             text=message_command_top.format(
@@ -115,7 +115,7 @@ async def handler_top_list(callback: CallbackQuery, state: FSMContext):
     ))[:5]
     top_users = ''
     for top_user in users:
-        top_users += f'@{top_user.tg_username} - {top_user.rank}\n'
+        top_users += f'{top_user.tg_fullname} - {top_user.rank}\n'
 
     await callback.message.edit_text(
         text=message_command_top.format(
