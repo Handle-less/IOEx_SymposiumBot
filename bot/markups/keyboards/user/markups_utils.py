@@ -10,22 +10,30 @@ from database.models.users import Users
 async def keyboard_announce_meeting():
     keyboard = InlineKeyboardMarkup(row_width=2)
 
-    for x in range(1, 8):
+    for x in range(1, 9):
         role_count = await Users.filter(
             role=x
         ).count()
-        keyboard.add(
-            *[
-                InlineKeyboardButton(
-                    text=f'{config["roles"][str(x)]["name"]} [{role_count}/{config["roles"][str(x)]["max"]}]',
-                    callback_data=f'handler_meetings_role_{x}'
-                ),
-                InlineKeyboardButton(
-                    text=buttons_text_keyboard_announce_meetings[0],
-                    callback_data=f'handler_roles_see_{config["roles"][str(x)]["about"]}'
-                )
-            ]
-        )
+        if x != 8:
+            keyboard.add(
+                *[
+                    InlineKeyboardButton(
+                        text=f'{config["roles"][str(x)]["name"]} [{role_count}/{config["roles"][str(x)]["max"]}]',
+                        callback_data=f'handler_meetings_role_{x}'
+                    ),
+                    InlineKeyboardButton(
+                        text=buttons_text_keyboard_announce_meetings[0],
+                        callback_data=f'handler_roles_see_{config["roles"][str(x)]["about"]}'
+                    )
+                ]
+            )
+        else:
+            keyboard.add(
+                    InlineKeyboardButton(
+                        text=f'{config["roles"][str(x)]["name"]} [{role_count}/{config["roles"][str(x)]["max"]}]',
+                        callback_data=f'handler_meetings_role_{x}'
+                    )
+            )
     keyboard.add(
         InlineKeyboardButton(
             text=buttons_text_keyboard_announce_meetings[1],

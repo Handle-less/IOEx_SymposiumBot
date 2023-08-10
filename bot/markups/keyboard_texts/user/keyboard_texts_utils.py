@@ -1,5 +1,5 @@
 buttons_text_keyboard_announce_meetings = [
-    "What is this?",
+    "Role overview",
     "Cancel visit"
 ]
 
