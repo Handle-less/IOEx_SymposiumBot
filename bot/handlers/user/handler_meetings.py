@@ -77,12 +77,19 @@ async def handler_meetings_visit_role(callback: CallbackQuery, state: FSMContext
         else:
             user.role = selected_role
             await user.save()
+            last_run = datetime.datetime.strptime(config['last_run'], '%d.%m.%Y').date()
+            last_week = last_run.weekday()
+            now_date = datetime.datetime.now().date()
+            now_week = now_date.weekday()
 
-            await callback.answer(
+            meet_date = now_date + datetime.timedelta(days=last_week - now_week)
+            if (last_run - meet_date).days / 7 % 2 != 0:
+                meet_date += datetime.timedelta(days=7)
+            await callback.message.answer(
                 text=message_visit_meeting.format(
-                    config['roles'][str(selected_role)]['name']
-                ),
-                show_alert=True
+                    config['roles'][str(selected_role)]['name'],
+                    meet_date
+                )
             )
             await callback.message.edit_reply_markup(
                 reply_markup=await keyboard_announce_meeting()
