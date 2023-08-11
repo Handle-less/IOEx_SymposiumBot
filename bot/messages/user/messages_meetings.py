@@ -16,6 +16,13 @@ Places for this role are occupied
 
 message_visit_meeting = """
 You are booked into the meeting as {}
+
+Topic: IEOx Symposium  
+ 
+Join Zoom Meeting 
+https://zoom.us/j/92552253493 
+ 
+Meeting ID: 925 5225 3493
 """
 
 message_closed_meeting = """
