@@ -1,5 +1,5 @@
 message_canceled_visit = """
-Visit canceled
+Registration canceled
 """
 
 message_not_visit = """
