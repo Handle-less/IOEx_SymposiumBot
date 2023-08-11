@@ -47,7 +47,7 @@
       "max": 1
     },
     "8": {
-      "name": "Listener",
+      "name": "LISTENER",
       "about": "None",
       "max": 5
     }
