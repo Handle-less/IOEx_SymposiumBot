@@ -21,7 +21,7 @@ async def keyboard_start_menu():
     keyboard.add(
         InlineKeyboardButton(
             text=buttons_text_keyboard_start[0].format(
-                f'{meet_date.month}/{meet_date.day}'
+                f'{meet_date.strftime("%B")}, {meet_date.day}'
             ),
             callback_data='handler_visit'
         )
