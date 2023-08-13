@@ -26,7 +26,7 @@ async def handler_command_start(message: Message, state: FSMContext):
                 user.tg_fullname,
                 user.rank
             ),
-            reply_markup=await keyboard_start_menu()
+            reply_markup=await keyboard_start_menu(user_id=user.tg_id)
         )
     else:
         await reg_user(
@@ -140,7 +140,7 @@ async def handler_start(callback: CallbackQuery, state: FSMContext):
                 user.tg_fullname,
                 user.rank
             ),
-            reply_markup=await keyboard_start_menu()
+            reply_markup=await keyboard_start_menu(user_id=user.tg_id)
         )
 
 
