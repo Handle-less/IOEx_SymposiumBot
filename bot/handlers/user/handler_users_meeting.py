@@ -20,6 +20,7 @@ async def handler_users_meeting(callback: CallbackQuery, state: FSMContext):
 
     await callback.message.edit_text(
         text=message_users_meeting.format(
+            len(users),
             text
         ),
         reply_markup=await keyboard_users_meeting()

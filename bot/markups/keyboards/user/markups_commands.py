@@ -7,7 +7,7 @@ from bot.markups.keyboard_texts.user.keyboard_texts_utils import buttons_text_ke
 from configuration import config
 
 
-async def keyboard_start_menu():
+async def keyboard_start_menu(user_id):
     keyboard = InlineKeyboardMarkup(row_width=2)
     last_run = datetime.datetime.strptime(config['last_run'], '%d.%m.%Y').date()
     last_week = last_run.weekday()
@@ -36,12 +36,13 @@ async def keyboard_start_menu():
             callback_data='command_roles'
         )
     )
-    keyboard.add(
-        InlineKeyboardButton(
-            text=buttons_text_keyboard_start[3],
-            callback_data='handler_users_meeting'
+    if user_id in config['ADMINS_ID']:
+        keyboard.add(
+            InlineKeyboardButton(
+                text=buttons_text_keyboard_start[3],
+                callback_data='handler_users_meeting'
+            )
         )
-    )
 
     return keyboard
 
