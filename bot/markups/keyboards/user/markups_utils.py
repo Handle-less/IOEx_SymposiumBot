@@ -10,11 +10,11 @@ from database.models.users import Users
 async def keyboard_announce_meeting():
     keyboard = InlineKeyboardMarkup(row_width=2)
 
-    for x in range(1, 9):
+    for x in config["roles"]:
         role_count = await Users.filter(
             role=x
         ).count()
-        if x != 8:
+        if config["roles"][str(x)]["about"] != 'None':
             keyboard.add(
                 *[
                     InlineKeyboardButton(
@@ -51,7 +51,7 @@ async def keyboard_announce_meeting():
 
 
 async def keyboard_check_visit():
-    keyboard = InlineKeyboardMarkup(row_width=3)
+    keyboard = InlineKeyboardMarkup(row_width=4)
 
     users = await Users.filter(
         role__gte=1
@@ -62,6 +62,10 @@ async def keyboard_check_visit():
                 InlineKeyboardButton(
                     text=user.tg_fullname,
                     callback_data='_'
+                ),
+                InlineKeyboardButton(
+                    text='Bonus',
+                    callback_data=f'handler_user_visit_bonus_{user.tg_id}'
                 ),
                 InlineKeyboardButton(
                     text='➕',

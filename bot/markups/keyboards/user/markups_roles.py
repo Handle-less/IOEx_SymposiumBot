@@ -10,15 +10,16 @@ from database.models.users import Users
 async def keyboard_roles_list():
     keyboard = InlineKeyboardMarkup(row_width=2)
 
-    for x in range(1, 8):
-        keyboard.add(
-            *[
-                InlineKeyboardButton(
-                    text=f'{config["roles"][str(x)]["name"]}',
-                    callback_data=f'handler_roles_see_{config["roles"][str(x)]["about"]}'
-                )
-            ]
-        )
+    for x in config["roles"]:
+        if config["roles"][str(x)]["about"] != 'None':
+            keyboard.add(
+                *[
+                    InlineKeyboardButton(
+                        text=f'{config["roles"][str(x)]["name"]}',
+                        callback_data=f'handler_roles_see_{config["roles"][str(x)]["about"]}'
+                    )
+                ]
+            )
     keyboard.add(
         InlineKeyboardButton(
             text=buttons_text_keyboard_roles_list[0],

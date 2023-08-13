@@ -7,3 +7,5 @@ __pychache__/
 venv
 
 test.py
+
+/database/db.sqlite

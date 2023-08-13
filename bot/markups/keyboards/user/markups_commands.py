@@ -36,6 +36,12 @@ async def keyboard_start_menu():
             callback_data='command_roles'
         )
     )
+    keyboard.add(
+        InlineKeyboardButton(
+            text=buttons_text_keyboard_start[3],
+            callback_data='handler_users_meeting'
+        )
+    )
 
     return keyboard
 

@@ -40,12 +40,12 @@ async def check_visit():
     last_run = (datetime.datetime.strptime(config['last_run'], '%d.%m.%Y')).date()
     now_date = datetime.datetime.now().date()
 
-    if (last_run - now_date).days / 7 % 2 == 0:
-        await bot.send_message(
-            chat_id=config['CHAT_ID']['ADMIN'],
-            text=message_check_visit,
-            reply_markup=await keyboard_check_visit()
-        )
+    # if (last_run - now_date).days / 7 % 2 == 0:
+    await bot.send_message(
+        chat_id=config['CHAT_ID']['ADMIN'],
+        text=message_check_visit,
+        reply_markup=await keyboard_check_visit()
+    )
 
 
 async def announce_visit():

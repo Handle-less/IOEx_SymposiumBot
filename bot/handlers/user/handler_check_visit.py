@@ -3,6 +3,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
 
 from bot.markups.keyboards.user.markups_utils import keyboard_check_visit
+from configuration import config
 from database.models.users import Users
 
 
@@ -13,7 +14,11 @@ async def handler_check_visit(callback: CallbackQuery, state: FSMContext):
         tg_id=int(data[4])
     )
     if data[3] == '+':
-        user.rank += 1
+        points = config[str(user.role)]['points']
+        user.rank += points
+    elif data[3] == 'bonus':
+        points = config['roles'][str(user.role)]['points']
+        user.rank += points + 2
     else:
         user.rank -= 1
     user.role = 0

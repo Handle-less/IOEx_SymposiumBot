@@ -15,7 +15,8 @@ Places for this role are occupied
 """
 
 message_visit_meeting = """
-Thank you for registering! You are booked into the meeting as {}
+Thank you for your registration!
+You are booked into the meeting as {}
 We’re looking forward to seeing you on {} 12:00 UTC! 
 
 Topic: IEOx Symposium  
