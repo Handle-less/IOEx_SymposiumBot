@@ -14,7 +14,7 @@ async def handler_users_meeting(callback: CallbackQuery, state: FSMContext):
     users = await Users.filter(
         role__gte=1
     )
-    text = '\n\n'.join(f'user: {x.tg_fullname}\n'
+    text = '\n\n'.join(f'user: @{x.tg_username}\n'
                      f'role: {config["roles"][str(x.role)]["name"]}\n'
                      f'rate: {x.rank}' for x in users)
 
