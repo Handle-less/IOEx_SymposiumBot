@@ -27,10 +27,10 @@ async def on_startup(_):
 
 
 async def scheduler():
-    every().week.thursday.at('18:30').do(announce_visit)
-    every().week.sunday.at('14:30').do(check_visit)
-    every().week.sunday.at('13:00').do(remind_meeting, 'sun')
-    every().week.friday.at('16:00').do(remind_meeting, 'frid')
+    every().week.thursday.at('15:30').do(announce_visit)
+    every().week.sunday.at('11:30').do(check_visit)
+    every().week.sunday.at('10:00').do(remind_meeting, 'sun')
+    every().week.friday.at('13:00').do(remind_meeting, 'frid')
     while True:
         await run_pending()
         await asyncio.sleep(1)
