@@ -14,7 +14,7 @@ async def handler_check_visit(callback: CallbackQuery, state: FSMContext):
         tg_id=int(data[4])
     )
     if data[3] == '+':
-        points = config[str(user.role)]['points']
+        points = config['roles'][str(user.role)]['points']
         user.rank += points
     elif data[3] == 'bonus':
         points = config['roles'][str(user.role)]['points']
