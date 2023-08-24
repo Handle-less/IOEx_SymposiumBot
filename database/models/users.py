@@ -22,7 +22,10 @@ class Users(models.Model):
     role: fields.IntField = fields.IntField(
         default=0
     )
-    # 1 - ; 2 - ; 3 - ; 4 - ; 5 - ; 6 - ; 7 - ;
+
+    visited: fields.IntField = fields.IntField(
+        default=0
+    )
 
     class Meta:
         table = 'users'

@@ -22,6 +22,7 @@ async def handler_check_visit(callback: CallbackQuery, state: FSMContext):
     else:
         user.rank -= 1
     user.role = 0
+    user.visited = 0
     await user.save()
 
     await callback.message.edit_reply_markup(

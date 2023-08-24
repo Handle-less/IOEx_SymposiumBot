@@ -12,7 +12,8 @@ async def handler_users_meeting(callback: CallbackQuery, state: FSMContext):
     await state.finish()
 
     users = await Users.filter(
-        role__gte=1
+        role__gte=1,
+        visited=0
     )
     text = '\n\n'.join(f'user: @{x.tg_username}\n'
                      f'role: {config["roles"][str(x.role)]["name"]}\n'

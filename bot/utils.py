@@ -42,12 +42,18 @@ async def check_visit():
     last_run = (datetime.datetime.strptime(config['last_run'], '%d.%m.%Y')).date()
     now_date = datetime.datetime.now().date()
 
-    # if (last_run - now_date).days / 7 % 2 == 0:
-    await bot.send_message(
-        chat_id=config['CHAT_ID']['ADMIN'],
-        text=message_check_visit,
-        reply_markup=await keyboard_check_visit()
-    )
+    users = await Users.filter(role__gte=1)
+
+    for user in users:
+        user.visited = 1
+        await user.save()
+
+    if (last_run - now_date).days / 7 % 2 == 0:
+        await bot.send_message(
+            chat_id=config['CHAT_ID']['ADMIN'],
+            text=message_check_visit,
+            reply_markup=await keyboard_check_visit()
+        )
 
 
 async def announce_visit():
@@ -56,10 +62,9 @@ async def announce_visit():
 
     if (last_run - now_date).days / 7 % 2 != 0:
         await bot.send_message(
-            chat_id=config['CHAT_ID']['ADMIN'],
+            chat_id=config['CHAT_ID']['CHAT'],
             text=message_announce_visit.format(
                 now_date + datetime.timedelta(days=7),
                 config['time_meeting']
-            ),
-            reply_markup=await keyboard_check_visit()
+            )
         )

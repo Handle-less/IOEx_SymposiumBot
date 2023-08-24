@@ -44,8 +44,9 @@ async def handler_meetings_visit_role(callback: CallbackQuery, state: FSMContext
         await user.save()
         selected_role = int(data[3])
         role_count = await Users.filter(
-            role=selected_role
-        )
+            role=selected_role,
+            visited=0
+        ).count()
         if selected_role == 0:
             if user.role != 0:
                 user.role = 0
@@ -69,7 +70,7 @@ async def handler_meetings_visit_role(callback: CallbackQuery, state: FSMContext
                 text=message_already_visit,
                 show_alert=True
             )
-        elif role_count == config['roles'][str(selected_role)]['max']:
+        elif role_count >= config['roles'][str(selected_role)]['max']:
             await callback.answer(
                 text=message_role_is_full,
                 show_alert=True

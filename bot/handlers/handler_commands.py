@@ -76,12 +76,23 @@ async def handler_command_top(message: Message, state: FSMContext):
         user.tg_fullname = message.chat.full_name
         await user.save()
 
-        users = (await Users.all().group_by(
-            'rank'
-        ))[:5]
-        top_users = ''
+        users = await Users.all()
+        top_users_dict = {}
         for top_user in users:
-            top_users += f'{top_user.tg_fullname} - {top_user.rank}\n'
+            top_users_dict.update(
+                {top_user.tg_fullname: top_user.rank}
+            )
+        top_users_sorted_dict = sorted(top_users_dict, key=top_users_dict.get, reverse=True)
+
+        top_users = ''
+        for index, top_user in enumerate(top_users_sorted_dict):
+            if top_user == user.tg_fullname or index >= 4 and top_user == user.tg_fullname:
+                top_users += f'<b>You</b> {index + 1}. {top_user} - {top_users_dict[top_user]}\n'
+            elif index < 4:
+                top_users += f'{index + 1}. {top_user} - {top_users_dict[top_user]}\n'
+
+        # if user.tg_fullname not in top_users_sorted_dict:
+        #     top_users += f'{user.tg_fullname} - {user.rank}\n'
 
         await message.answer(
             text=message_command_top.format(

@@ -1,8 +1,7 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from bot.markups.keyboard_texts.keyboard_text_roles import buttons_text_keyboard_roles_list
-from bot.markups.keyboard_texts.user.keyboard_texts_utils import buttons_text_keyboard_announce_meetings, \
-    buttons_text_keyboard_remind_meeting
+from bot.markups.keyboard_texts.user.keyboard_texts_utils import buttons_text_keyboard_announce_meetings
 from configuration import config
 from database.models.users import Users
 
@@ -12,7 +11,8 @@ async def keyboard_announce_meeting():
 
     for x in config["roles"]:
         role_count = await Users.filter(
-            role=x
+            role=x,
+            visited=0
         ).count()
         if config["roles"][str(x)]["about"] != 'None':
             keyboard.add(
@@ -54,7 +54,7 @@ async def keyboard_check_visit():
     keyboard = InlineKeyboardMarkup(row_width=4)
 
     users = await Users.filter(
-        role__gte=1
+        visited=1
     )
     for user in users:
         keyboard.add(
