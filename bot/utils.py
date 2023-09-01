@@ -30,7 +30,7 @@ async def remind_meeting(sun_or_frid):
         await bot.send_message(
             chat_id=config['CHAT_ID']['CHAT'],
             text=message_remind_meeting.format(
-                now_date.month,
+                now_date.strftime("%B"),
                 now_date.day,
                 now_date.year,
                 config['time_meeting']
