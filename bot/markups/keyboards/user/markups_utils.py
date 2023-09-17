@@ -4,6 +4,7 @@ from bot.markups.keyboard_texts.keyboard_text_roles import buttons_text_keyboard
 from bot.markups.keyboard_texts.user.keyboard_texts_utils import buttons_text_keyboard_announce_meetings
 from configuration import config
 from database.models.users import Users
+from tortoise.expressions import Q
 
 
 async def keyboard_announce_meeting():
@@ -54,7 +55,7 @@ async def keyboard_check_visit():
     keyboard = InlineKeyboardMarkup(row_width=4)
 
     users = await Users.filter(
-        visited=1
+        ~Q(visited=0)
     )
     for user in users:
         keyboard.add(
