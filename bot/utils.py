@@ -45,7 +45,8 @@ async def check_visit():
     users = await Users.filter(role__gte=1)
 
     for user in users:
-        user.visited = 1
+        user.visited = user.role
+        user.role = 0
         await user.save()
 
     if (last_run - now_date).days / 7 % 2 == 0:
